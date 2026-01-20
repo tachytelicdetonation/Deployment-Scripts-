@@ -3,7 +3,9 @@
 export HF_HOME="./workspace_cache"
 export HF_HUB_ENABLE_HF_TRANSFER=1
 pip install uv
-uv venv
+if [ ! -d ".venv" ]; then
+    uv venv
+fi
 source .venv/bin/activate
 uv pip install vllm flashinfer-python hf_transfer
 CONTEXT_LENGTH=32768
