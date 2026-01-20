@@ -18,6 +18,9 @@ else
     TP_SIZE=1
 fi
 
+# Using vLLM V1 engine with FlashInfer backend
+# - V1: unified scheduler, zero-overhead prefix caching
+# - FlashInfer: optimized for GQA, prefix caching, long context (up to 31x speedup)
 vllm serve tachytelicdetonation/medgemma-27b-it-fp8-static \
     --served-model-name tachytelicdetonation/medgemma-27b-it-fp8-static \
     --kv-cache-dtype "auto" \
@@ -28,5 +31,8 @@ vllm serve tachytelicdetonation/medgemma-27b-it-fp8-static \
     --gpu-memory-utilization 0.95 \
     --tensor-parallel-size $TP_SIZE \
     --disable-log-requests \
+    --enable-v1-multiprocessing \
+    --enable-prefix-caching \
+    --attention-backend FLASHINFER \
     --host 0.0.0.0 \
     --port 8886
