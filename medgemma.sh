@@ -25,7 +25,7 @@ vllm serve tachytelicdetonation/medgemma-27b-it-fp8-static \
     -O3 \
     --served-model-name tachytelicdetonation/medgemma-27b-it-fp8-static \
     --max-model-len auto \
-    --max-num-seqs 256 \
+    --max-num-seqs 64 \
     --max-num-batched-tokens 32768 \
     --gpu-memory-utilization 0.95 \
     --tensor-parallel-size $TP_SIZE \
