@@ -10,7 +10,7 @@ source .venv/bin/activate
 uv pip install "vllm>=0.14.0" flashinfer-python hf_transfer
 
 # Auto-detect number of GPUs for tensor parallelism
-NUM_GPUS=$(nvidia-smi -L | wc -l)
+NUM_GPUS=$(nvidia-smi --query-gpu=count --format=csv,noheader 2>/dev/null | head -1)
 if [ "$NUM_GPUS" -gt 1 ]; then
     TP_SIZE=$NUM_GPUS
 else
